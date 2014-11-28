@@ -31,6 +31,9 @@ DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 _OBJ = main.o packet.o algorithm.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
+_OBJSER = server_test.o packet.o algorithm.o
+OBJSER = $(patsubst %,$(ODIR)/%,$(_OBJ))
+
 #replaced
 #%.o: %.c $(DEPS)
 $(ODIR)/%.o: %.c $(DEPS)
@@ -48,6 +51,9 @@ $(ODIR)/%.o: $(LDIR)/%.c $(DEPS)
 application: $(OBJ)
 	gcc -o $@ $^ $(CFLAGS) $(LIBS)
 
+server: $(OBJSER)
+	gcc server_test.c -o server obj/algorithm.o obj/packet.o 
+	#gcc server_test.c -o server $(ODIR)/*  $(CFLAGS) $(LIBS)
 
 run:
 	./application

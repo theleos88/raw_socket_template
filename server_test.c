@@ -1,5 +1,7 @@
 #include "hdr/packet.h"
 #include "hdr/algorithm.h"
+#include <string.h>
+#include <stdlib.h>
 
 int main( int argc, char** argv){
  
@@ -7,7 +9,7 @@ int main( int argc, char** argv){
     char buffer[BUF];
     char *dats;
     size_t bytes;
-    int sock_d;
+    int sockfd;
     
     /*Network*/
     ip_ptr ip;
@@ -26,9 +28,9 @@ int main( int argc, char** argv){
     udp = (struct udphdr *) (buffer + sizeof(struct iphdr));
     dats = buffer+(sizeof(struct iphdr)+sizeof(struct udphdr));
 
-    sock_d = create_socket_connection();
+    sockfd = create_socket_connection();
     
-    while( (bytes = read(sockfd, buffer, BUFFSIZE)) > 0) {
+    while( (bytes = read(sockfd, buffer, BUF)) > 0) {
         //printf("tcp:  dport=%d, sport=%d, from=%s", ntohs(udp->dest),ntohs(udp->source),inet_ntoa(ip->saddr));
         dump_packets(buffer, bytes);
         memset(buffer, '\0', BUF);
