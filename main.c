@@ -1,6 +1,8 @@
 #include "hdr/packet.h"
 #include "hdr/algorithm.h"
 
+#include <string.h>
+
 int main( int argc, char** argv){
     printf("Ciao!\n");
     send_single_packet();
@@ -31,7 +33,7 @@ int main( int argc, char** argv){
     ip = (struct iphdr *)packet;
     udp = (struct udphdr *) (packet + sizeof(struct udphdr));
     
-    strcpy(packet+sizeof(struct iphdr)+sizeof(struct udphdr),tests);
+    //strcpy(packet+sizeof(struct iphdr)+sizeof(struct udphdr),tests);
 
     ip->ihl = 5;
     ip->version = 4;
