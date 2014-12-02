@@ -3,8 +3,12 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/socket.h>
+#include <netinet/if_ether.h>  //For ETH_P_ALL
+#include <net/ethernet.h>  //For ether_header
 #include <netinet/ip.h>
+#include <netinet/ip_icmp.h>   //Provides declarations for icmp header
 #include <netinet/udp.h>
+#include <netinet/tcp.h>   //Provides declarations for tcp header
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
